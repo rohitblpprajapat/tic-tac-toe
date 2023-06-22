@@ -1,5 +1,6 @@
 // app.js
-const { useState } = React;
+import React, { useState } from 'react';
+import ReactDOM from 'react-dom';
 
 const App = () => {
   const [board, setBoard] = useState(Array(9).fill(""));
@@ -9,10 +10,10 @@ const App = () => {
     if (board[index] || calculateWinner(board)) {
       return;
     }
-    
+
     const newBoard = [...board];
     newBoard[index] = xIsNext ? "X" : "O";
-    
+
     setBoard(newBoard);
     setXIsNext(!xIsNext);
   };
@@ -29,7 +30,7 @@ const App = () => {
   let status;
   if (winner) {
     status = `Winner: ${winner}`;
-  } else if (board.every(cell => cell !== "")) {
+  } else if (board.every((cell) => cell !== "")) {
     status = "It's a draw!";
   } else {
     status = `Next player: ${xIsNext ? "X" : "O"}`;
